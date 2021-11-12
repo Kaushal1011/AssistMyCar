@@ -40,7 +40,7 @@ if __name__ == '__main__':
                 buf.write((str(cpu)+"\n").encode()) #right
                 buf2.seek(0)
                 for i in val_arr:
-                    if i<30:
+                    if i<7:
                         buf2.write(("0"+"\n").encode())
                     else:
                         buf2.write(("1"+"\n").encode())
