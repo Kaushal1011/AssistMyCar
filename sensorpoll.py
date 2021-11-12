@@ -4,6 +4,9 @@ import serial
 import requests
 import mmap
 import os
+from gpiozero import LEDBarGraph, CPUTemperature
+from signal import pause
+import requests
 
 filename = 'sensormapfile'
 filename2 = 'safemapfile'
@@ -27,13 +30,14 @@ if __name__ == '__main__':
         while True:
             print(val_arr)
             if len(val_arr)==numofsens:
+                cpu = CPUTemperature()
                 buf.seek(0)
                 ## use pickle to store complicated data
                 buf.write(str(val_arr[0])+"\n") #front
                 buf.write(str(val_arr[1])+"\n") #back
                 buf.write(str(val_arr[2])+"\n") #left
                 buf.write(str(val_arr[3])+"\n") #right
-
+                buf.write(str(cpu)+"\n") #right
                 buf2.seek(0)
                 for i in val_arr:
                     if i<30:
@@ -43,7 +47,7 @@ if __name__ == '__main__':
 
 
                 # send to things speak
-                PARAMS = {'api_key':'898XWPNP7UTY1AEB','field1':val_arr[0],'field2':val_arr[1],'field3':val_arr[2],'field4':val_arr[3]}
+                PARAMS = {'api_key':'898XWPNP7UTY1AEB','field1':val_arr[0],'field2':val_arr[1],'field3':val_arr[2],'field4':val_arr[3],'field5':str(cpu)}
                 r = requests.get(url = URL, params = PARAMS)
                 data=r.json()
                 print(data)
