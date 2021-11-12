@@ -8,11 +8,22 @@ print("start")
 curr=0
 prev=0
 count=0
+dist=0
+speed=0
+proctime=time.process_time()
+curtimeint=1
 try:
     while True: # Run forever
         curr=GPIO.input(4)
         if curr==1 and prev==0:
+            newtime=time.process_time()
+            curtimeint=newtime-proctime
+            proctime=newtime
             count+=1
+            dist+=1.083
+            speed=1.083/curtimeint
         prev=curr
+        print(speed)
 except KeyboardInterrupt:
-    print(count)   
+    print(count)
+    print(dist)
