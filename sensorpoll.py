@@ -33,10 +33,8 @@ if __name__ == '__main__':
                 cpu = CPUTemperature()
                 buf.seek(0)
                 ## use pickle to store complicated data
-                buf.write((str(val_arr[0])+"\n").encode()) #front
-                buf.write((str(val_arr[1])+"\n").encode()) #back
-                buf.write((str(val_arr[2])+"\n").encode()) #left
-                buf.write((str(val_arr[3])+"\n").encode()) #right
+                buf.write((str(val_arr[0])+"\n").encode()) #left
+                buf.write((str(val_arr[1])+"\n").encode()) #right
                 buf.write((str(cpu)+"\n").encode()) #right
                 buf2.seek(0)
                 for i in val_arr:
@@ -47,7 +45,7 @@ if __name__ == '__main__':
 
 
                 # send to things speak
-                PARAMS = {'api_key':'G970P19UTW0B3NIC','field1':val_arr[0],'field2':val_arr[1],'field3':val_arr[2],'field4':val_arr[3],'field5':str(cpu)}
+                PARAMS = {'api_key':'G970P19UTW0B3NIC','field1':val_arr[0],'field2':val_arr[1],'field3':str(cpu),}
                 r = requests.get(url = URL, params = PARAMS)
                 data=r.json()
                 print(data)
@@ -71,8 +69,6 @@ if __name__ == '__main__':
         print(e)
         buf.seek(0)
         ## use pickle to store complicated data
-        buf.write(("1"+"\n").encode()) #front_safe
-        buf.write(("1"+"\n").encode()) #back_safe
         buf.write(("1"+"\n").encode()) #left_safe
         buf.write(("1"+"\n").encode()) #right_safe
         #buf.flush()

@@ -24,10 +24,8 @@ bufdist = mmap.mmap(fdtemp,0, mmap.MAP_SHARED, mmap.PROT_READ)
 def index():
     readings={}
     bufsens.seek(0)
-    readings["front"] = int(bufsens.readline().decode())
-    readings["back"]=int(bufsens.readline().decode())
-    readings["right"]=int(bufsens.readline().decode())
     readings["left"]=int(bufsens.readline().decode())
+    readings["right"]=int(bufsens.readline().decode())
     bufgps.seek(0)
     readings["lattitude"]=float(bufgps.readline().decode())
     readings["longitude"]=float(bufgps.readline().decode())
