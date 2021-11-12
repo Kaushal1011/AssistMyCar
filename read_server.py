@@ -38,3 +38,8 @@ def index():
     readings["distance"]=float(bufdist.readline())
     readings["speed"]=float(bufspeed.readline())
     return jsonify(readings)
+
+
+if __name__ == "__main__":
+ print("Start")
+ app.run(host='0.0.0.0',port=8000)
