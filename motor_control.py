@@ -20,7 +20,7 @@ GPIO.output(m11 , 0)
 GPIO.output(m12 , 0)
 GPIO.output(m21, 0)
 GPIO.output(m22, 0)
-print "DOne"
+print("DOne")
 
 a=1
 @app.route("/")
@@ -73,5 +73,5 @@ def stop():
    return  'true'
 
 if __name__ == "__main__":
- print "Start"
+ print("Start")
  app.run(host='0.0.0.0',port=5010)

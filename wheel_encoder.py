@@ -8,9 +8,11 @@ print("start")
 curr=0
 prev=0
 count=0
-while True: # Run forever
-    curr=GPIO.input(4)
-    if curr==1 and prev==0:
-        count+=1
-    prev=curr
-        
+try:
+    while True: # Run forever
+        curr=GPIO.input(4)
+        if curr==1 and prev==0:
+            count+=1
+        prev=curr
+except KeyboardInterrupt:
+    print(count)   
