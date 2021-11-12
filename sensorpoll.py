@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
 
                 # send to things speak
-                PARAMS = {'api_key':'898XWPNP7UTY1AEB','field1':val_arr[0],'field2':val_arr[1],'field3':val_arr[2],'field4':val_arr[3],'field5':str(cpu)}
+                PARAMS = {'api_key':'G970P19UTW0B3NIC','field1':val_arr[0],'field2':val_arr[1],'field3':val_arr[2],'field4':val_arr[3],'field5':str(cpu)}
                 r = requests.get(url = URL, params = PARAMS)
                 data=r.json()
                 print(data)

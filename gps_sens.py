@@ -67,13 +67,14 @@ try:
             ## use pickle to store complicated data
             buf.write((str(lat_in_degrees)+"\n").encode())
             buf.write((str(long_in_degrees)+"\n").encode())
+            buf.write(("0\n").encode())
             # add elevation here
             print("lat in degrees:", lat_in_degrees," long in degree: ", long_in_degrees, '\n')
             map_link = 'http://maps.google.com/?q=' + lat_in_degrees + ',' + long_in_degrees    #create link to plot location on Google map
             print("<<<<<<<<press ctrl+c to plot location on google maps>>>>>>\n")               #press ctrl+c to plot on map and exit
             print("------------------------------------------------------------\n")
             # add elevation here
-            PARAMS = {'api_key':'898XWPNP7UTY1AEB','field1':lat_in_degrees,'field2':long_in_degrees}
+            PARAMS = {'api_key':'GPYTEM986GEOZK8A','field1':lat_in_degrees,'field2':long_in_degrees,'field3':0}
             r = requests.get(url = URL, params = PARAMS)
             data=r.json()
             print(data)
