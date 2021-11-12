@@ -65,8 +65,8 @@ try:
             GPS_Info()                                          #get time, latitude, longitude
             buf.seek(0)
             ## use pickle to store complicated data
-            buf.write(str(lat_in_degrees)+"\n")
-            buf.write(str(long_in_degrees)+"\n")
+            buf.write((str(lat_in_degrees)+"\n").encode())
+            buf.write((str(long_in_degrees)+"\n").encode())
             # add elevation here
             print("lat in degrees:", lat_in_degrees," long in degree: ", long_in_degrees, '\n')
             map_link = 'http://maps.google.com/?q=' + lat_in_degrees + ',' + long_in_degrees    #create link to plot location on Google map

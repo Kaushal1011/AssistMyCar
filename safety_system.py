@@ -24,10 +24,10 @@ i = 0
 def main():
     while True:
         buf.seek(0)
-        front_safe = int(buf.readline())
-        back_safe=int(buf.readline())
-        right_safe=int(buf.readline())
-        left_safe=int(buf.readline())
+        front_safe = int(buf.readline().decode())
+        back_safe=int(buf.readline().decode())
+        right_safe=int(buf.readline().decode())
+        left_safe=int(buf.readline().decode())
         # print(front_safe)
         if front_safe==0:
             GPIO.output(m11 , 0)

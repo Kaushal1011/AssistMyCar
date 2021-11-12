@@ -33,17 +33,17 @@ if __name__ == '__main__':
                 cpu = CPUTemperature()
                 buf.seek(0)
                 ## use pickle to store complicated data
-                buf.write(str(val_arr[0])+"\n") #front
-                buf.write(str(val_arr[1])+"\n") #back
-                buf.write(str(val_arr[2])+"\n") #left
-                buf.write(str(val_arr[3])+"\n") #right
-                buf.write(str(cpu)+"\n") #right
+                buf.write((str(val_arr[0])+"\n").encode()) #front
+                buf.write((str(val_arr[1])+"\n").encode()) #back
+                buf.write((str(val_arr[2])+"\n").encode()) #left
+                buf.write((str(val_arr[3])+"\n").encode()) #right
+                buf.write((str(cpu)+"\n").encode()) #right
                 buf2.seek(0)
                 for i in val_arr:
                     if i<30:
-                        buf2.write("0"+"\n")
+                        buf2.write(("0"+"\n").encode())
                     else:
-                        buf2.write("1"+"\n")
+                        buf2.write(("1"+"\n").encode())
 
 
                 # send to things speak
@@ -71,10 +71,10 @@ if __name__ == '__main__':
         print(e)
         buf.seek(0)
         ## use pickle to store complicated data
-        buf.write("1"+"\n") #front_safe
-        buf.write("1"+"\n") #back_safe
-        buf.write("1"+"\n") #left_safe
-        buf.write("1"+"\n") #right_safe
+        buf.write(("1"+"\n").encode()) #front_safe
+        buf.write(("1"+"\n").encode()) #back_safe
+        buf.write(("1"+"\n").encode()) #left_safe
+        buf.write(("1"+"\n").encode()) #right_safe
         #buf.flush()
         raw_input('ENTER')
         buf.close()

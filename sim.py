@@ -16,13 +16,13 @@ try:
         print i
         buf.seek(0)
         ## use pickle to store complicated data
-        buf.write(str(i)+"\n")
+        buf.write((str(i)+"\n").encode())
         #buf.flush()
         raw_input('ENTER')
 except:
     buf.seek(0)
         ## use pickle to store complicated data
-    buf.write("1"+"\n")
+    buf.write(("1"+"\n").encode())
     #buf.flush()
     raw_input('ENTER')
     buf.close()
