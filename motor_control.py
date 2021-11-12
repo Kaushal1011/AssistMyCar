@@ -25,7 +25,7 @@ print("DOne")
 a=1
 @app.route("/")
 def index():
-    return render_template('robot.html')
+    return "hello"
 
 @app.route('/left_side')
 def left_side():

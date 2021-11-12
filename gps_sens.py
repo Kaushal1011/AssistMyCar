@@ -3,6 +3,17 @@ from time import sleep
 import webbrowser           #import package for opening link in browser
 import sys                  #import system package
 import requests
+import mmap
+import os
+
+filename = 'gpsmapfile'
+
+## create and initialize file with code like this
+#fd = os.open(filename, os.O_CREAT | os.O_TRUNC | os.O_RDWR)
+#os.write(fd, '\x00' * mmap.PAGESIZE)
+
+fd = os.open(filename, os.O_RDWR)
+buf = mmap.mmap(fd, 0, mmap.MAP_SHARED, mmap.PROT_WRITE)
 
 def GPS_Info():
     global NMEA_buff
@@ -52,16 +63,24 @@ try:
             GPGGA_buffer = received_data.split("$GPGGA,",1)[1]  #store data coming after "$GPGGA," string
             NMEA_buff = (GPGGA_buffer.split(','))               #store comma separated data in buffer
             GPS_Info()                                          #get time, latitude, longitude
-
+            buf.seek(0)
+            ## use pickle to store complicated data
+            buf.write(str(lat_in_degrees)+"\n")
+            buf.write(str(long_in_degrees)+"\n")
+            # add elevation here
             print("lat in degrees:", lat_in_degrees," long in degree: ", long_in_degrees, '\n')
             map_link = 'http://maps.google.com/?q=' + lat_in_degrees + ',' + long_in_degrees    #create link to plot location on Google map
             print("<<<<<<<<press ctrl+c to plot location on google maps>>>>>>\n")               #press ctrl+c to plot on map and exit
             print("------------------------------------------------------------\n")
+            # add elevation here
             PARAMS = {'api_key':'898XWPNP7UTY1AEB','field1':lat_in_degrees,'field2':long_in_degrees}
             r = requests.get(url = URL, params = PARAMS)
             data=r.json()
             print(data)
+            sleep(1)
 
 except KeyboardInterrupt:
+    buf.close()
+    os.close(fd)
     webbrowser.open(map_link)        #open current position information in google map
     sys.exit(0)

@@ -7,7 +7,7 @@ m11=18
 m12=23
 m21=24
 m22=25
-filename = 'mapfile'
+filename = 'safemapfile'
 fd = os.open(filename, os.O_RDONLY)
 
 buf = mmap.mmap(fd, 0, mmap.MAP_SHARED, mmap.PROT_READ)
@@ -18,17 +18,17 @@ GPIO.setup(m12, GPIO.OUT)
 GPIO.setup(m21, GPIO.OUT)
 GPIO.setup(m22, GPIO.OUT)
 i = 0
-    
+
 
 
 def main():
     while True:
         buf.seek(0)
         front_safe = int(buf.readline())
-        back_safe=1
-        right_safe=1
-        left_safe=1
-        print(front_safe)
+        back_safe=int(buf.readline())
+        right_safe=int(buf.readline())
+        left_safe=int(buf.readline())
+        # print(front_safe)
         if front_safe==0:
             GPIO.output(m11 , 0)
             GPIO.output(m21 , 0)
