@@ -5,6 +5,7 @@ import os
 GPIO.setwarnings(False) # Ignore warning for now
 GPIO.setmode(GPIO.BCM) # Use physical pin numbering
 GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+filename="distmapfile"
 fd = os.open(filename, os.O_RDWR)
 buf = mmap.mmap(fd, 0, mmap.MAP_SHARED, mmap.PROT_WRITE)
 # Set pin 10 to be an input pin and set initial value to be pulled low (off)

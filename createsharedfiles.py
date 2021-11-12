@@ -1,18 +1,16 @@
-import mmap
-import os
+fh = open('sensormapfile', 'w')
+fh.write('1\n1\n1\n1\n1\n1')
+fh.close()
 
-fd = os.open("sensormapfile", os.O_CREAT | os.O_TRUNC | os.O_RDWR)
-os.write(fd, '\x00' * mmap.PAGESIZE)
-os.close(fd)
+fh = open('safemapfile', 'w')
+fh.write('1\n1\n1\n1\n1\n1')
+fh.close()
 
-fd = os.open("safemapfile", os.O_CREAT | os.O_TRUNC | os.O_RDWR)
-os.write(fd, '\x00' * mmap.PAGESIZE)
-os.close(fd)
+fh = open('gpsmapfile', 'w')
+fh.write('1\n1\n1\n1\n1\n1')
+fh.close()
 
-fd = os.open("gpsmapfile", os.O_CREAT | os.O_TRUNC | os.O_RDWR)
-os.write(fd, '\x00' * mmap.PAGESIZE)
-os.close(fd)
+fh = open('distmapfile', 'w')
+fh.write('1\n1\n1\n1\n1\n1')
+fh.close()
 
-fd = os.open("distmapfile", os.O_CREAT | os.O_TRUNC | os.O_RDWR)
-os.write(fd, '\x00' * mmap.PAGESIZE)
-os.close(fd)
